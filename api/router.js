@@ -5,8 +5,10 @@ const messageController = require ('../api/controller/messageController')
 
 const router = express.Router();
 
+
+
 router.get("/", (req, res) => {
-	const filePath = path.join(__dirname, "../index.html");
+	const filePath = path.join(__dirname, '../index.html');
 	res.sendFile(filePath);
   });
 
