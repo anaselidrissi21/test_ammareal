@@ -1,20 +1,24 @@
 BEGIN;
 
 DROP TABLE IF EXISTS "message";
+DROP DOMAIN IF EXISTS tel;
+DROP DOMAIN IF EXISTS email;
 
-CREATE DOMAIN tel AS TEXT CHECK (VALUE ~ '^[0-9]{10}$');
-CREATE DOMAIN email AS TEXT
+
+
+CREATE DOMAIN tel AS VARCHAR CHECK (VALUE ~ '^[0-9]{10}$');
+CREATE DOMAIN email AS VARCHAR
   CHECK ( VALUE ~ '^[a-zA-Z0-9.!#$%&''*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$' );
 
 
-
-CREATE TABLE message (
+CREATE TABLE "message" (
   "id" INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-  "nom" TEXT NOT NULL,
-  "email" email NOT NULL,
-  "tel" tel NOT NULL,
+  "nom" VARCHAR(20) NOT NULL,
+  "email" VARCHAR(20) NOT NULL,
+  "tel" VARCHAR(10) NOT NULL,
   "message" TEXT NOT NULL
 );
+
 
 
 
